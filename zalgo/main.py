@@ -4,7 +4,7 @@ DIACRITICS_BOTTOM = ['̖',' ̗',' ̘',' ̙',' ̜',' ̝',' ̞',' ̟',' ̠',' ̤',
 DIACRITICS_TOP = [' ̍',' ̎',' ̄',' ̅',' ̿',' ̑',' ̆',' ̐',' ͒',' ͗',' ͑',' ̇',' ̈',' ̊',' ͂',' ̓',' ̈́',' ͊',' ͋',' ͌',' ̃',' ̂',' ̌',' ͐',' ́',' ̋',' ̏',' ̽',' ̉',' ͣ',' ͤ',' ͥ',' ͦ',' ͧ',' ͨ',' ͩ',' ͪ',' ͫ',' ͬ',' ͭ',' ͮ',' ͯ',' ̾',' ͛',' ͆',' ̚',]
 DIACRITICS_MIDDLE = [' ̕',' ̛',' ̀',' ́',' ͘',' ̡',' ̢',' ̧',' ̨',' ̴',' ̵',' ̶',' ͜',' ͝',' ͞',' ͟',' ͠',' ͢',' ̸',' ̷',' ͡',]
 
-def process(text: str, min_bottom_diacritics=1, max_bottom_diacritics=3, min_middle_diacritics=1, max_middle_diacritics=2, min_top_diacritics=1, max_top_diacritics=3, max_diacritics_per_letter=3):
+def process(text: str, min_top_diacritics=1, max_top_diacritics=3, min_middle_diacritics=1, max_middle_diacritics=2, min_bottom_diacritics=1, max_bottom_diacritics=3, max_diacritics_per_character=3, remove_spaces=False):
     """
     Add zalgo characters to a string.
     """
@@ -41,8 +41,8 @@ def process(text: str, min_bottom_diacritics=1, max_bottom_diacritics=3, min_mid
                     num_middle_accents -= 1
                     accents_added += 1
 
-        #a = a.replace(" ","") #remove any spaces, this also gives it the zalgo text look
-        output += letter
+    if remove_spaces:
+        output.replace(' ', '')
 
     return output
 
