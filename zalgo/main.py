@@ -19,28 +19,26 @@ def process(text: str, minimum_bottom_diacritics=1, maximum_bottom_diacritics=3,
             continue
 
         num_accents = 0
-        numU = random.randint(minimum_top_diacritics,maximum_top_diacritics)
-        numD = random.randint(minimum_bottom_diacritics,maximum_bottom_diacritics)
-        numM = random.randint(minimum_middle_diacritics,maximum_middle_diacritics)
-        #Try to add accents to the letter, will add an upper, lower, or middle accent randomly until
-        #either num_accents == maximum_diacritics_per_letter or we have added the maximum upper, middle and lower accents. Denoted
-        #by numU, numD, and numM
-        while num_accents < maximum_diacritics_per_letter and numU + numM + numD != 0:
+        num_top_accents = random.randint(minimum_top_diacritics,maximum_top_diacritics)
+        num_bottom_accents = random.randint(minimum_bottom_diacritics,maximum_bottom_diacritics)
+        num_middle_accents = random.randint(minimum_middle_diacritics,maximum_middle_diacritics)
+        # Add diacritics randomly to letter until saturation
+        while num_accents < maximum_diacritics_per_letter and num_top_accents + num_middle_accents + num_bottom_accents != 0:
             randint = random.randint(0,2) # randomly choose what accent type to add
             if randint == 0:
-                if numU > 0:
+                if num_top_accents > 0:
                     letter = combine_with_diacritic(letter, DIACRITICS_TOP)
                     num_accents += 1
-                    numU -= 1
+                    num_top_accents -= 1
             elif randint == 1:
-                if numD > 0:
+                if num_bottom_accents > 0:
                     letter = combine_with_diacritic(letter, DIACRITICS_BOTTOM)
-                    numD -= 1
+                    num_bottom_accents -= 1
                     num_accents += 1
             else:
-                if numM > 0:
+                if num_middle_accents > 0:
                     letter = combine_with_diacritic(letter, DIACRITICS_MIDDLE)
-                    numM -= 1
+                    num_middle_accents -= 1
                     num_accents += 1
 
         #a = a.replace(" ","") #remove any spaces, this also gives it the zalgo text look
