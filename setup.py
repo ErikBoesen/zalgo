@@ -1,8 +1,8 @@
 from distutils.core import setup
 
 setup(
-    name = 'zalgo',
-    packages = ['zalgo'], # this must be the same as the name above
+    name = 'zalgoify',
+    packages = ['zalgoify'], # this must be the same as the name above
     version = '1.0',
     description = 'A simple library for processing zalgo text',
     author = 'Erik Boesen',
