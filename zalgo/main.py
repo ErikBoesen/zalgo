@@ -51,4 +51,4 @@ def combine_with_diacritic(character, diacritic_options):
     """
     Combine character with a random diacritic.
     """
-    return character + diacritic_options[random.randrange(0, len(diacritic_options))]
+    return character + random.choice(diacritic_options).strip()
