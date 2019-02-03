@@ -10,7 +10,15 @@ To install the package from `pip`:
 
 Then in your project you can use it like so:
 
-    import zalgoify
-    print(zalgoify.process("Some text to zalgoify!"))
+```py
+import zalgoify
+print(zalgoify.process("Some text to zalgoify!"))
+```
 
-(This would return  `S͈̝ͨơ̖̬͔͐̅ͤm̱̪͇̎̈́̋e̮͇̲̅͛̕ t͖͖̰̆̒̇҉̨e̛̙͔̍͗́x̷̶͓̅t̹̙̠͗ͤ́ t̲̦̦ͤͧ͢o͇̝̥͒́̏ z̷̢̬͚̪̾̈́a̧̯̙ͥl̨̯̘ͦg̸̛̰̻̲ͯ̎ǫ̺̦ͬͩͅif̖̰̰̉y̛͍̘̏̅̍!`)
+(This would print `S͈̝ͨơ̖̬͔͐̅ͤm̱̪͇̎̈́̋e̮͇̲̅͛̕ t͖͖̰̆̒̇҉̨e̛̙͔̍͗́x̷̶͓̅t̹̙̠͗ͤ́ t̲̦̦ͤͧ͢o͇̝̥͒́̏ z̷̢̬͚̪̾̈́a̧̯̙ͥl̨̯̘ͦg̸̛̰̻̲ͯ̎ǫ̺̦ͬͩͅif̖̰̰̉y̛͍̘̏̅̍!`)
+
+To remove zalgo diacritics from text, use:
+
+```py
+print(zalgoify.strip(text))
+```
