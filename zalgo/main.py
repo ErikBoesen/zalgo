@@ -4,7 +4,7 @@ DIACRITICS_BOTTOM = ['̖',' ̗',' ̘',' ̙',' ̜',' ̝',' ̞',' ̟',' ̠',' ̤',
 DIACRITICS_TOP = [' ̍',' ̎',' ̄',' ̅',' ̿',' ̑',' ̆',' ̐',' ͒',' ͗',' ͑',' ̇',' ̈',' ̊',' ͂',' ̓',' ̈́',' ͊',' ͋',' ͌',' ̃',' ̂',' ̌',' ͐',' ́',' ̋',' ̏',' ̽',' ̉',' ͣ',' ͤ',' ͥ',' ͦ',' ͧ',' ͨ',' ͩ',' ͪ',' ͫ',' ͬ',' ͭ',' ͮ',' ͯ',' ̾',' ͛',' ͆',' ̚',]
 DIACRITICS_MIDDLE = [' ̕',' ̛',' ̀',' ́',' ͘',' ̡',' ̢',' ̧',' ̨',' ̴',' ̵',' ̶',' ͜',' ͝',' ͞',' ͟',' ͠',' ͢',' ̸',' ̷',' ͡',]
 
-def process(text: str, bottom_diacritics_count=(1, 3), middle_diacritics_count=(1, 2), top_diacritics_count=(1, 3), maximum_diacritics_per_letter=3):
+def process(text: str, minimum_bottom_diacritics=1, maximum_bottom_diacritics=3, minimum_middle_diacritics=1, maximum_middle_diacritics=2, minimum_top_diacritics=1, maximum_top_diacritics=3, maximum_diacritics_per_letter=3):
     """
     Add zalgo characters to a string.
     """
@@ -19,9 +19,9 @@ def process(text: str, bottom_diacritics_count=(1, 3), middle_diacritics_count=(
             continue
 
         num_accents = 0
-        numU = random.randint(top_diacritics_count[0],top_diacritics_count[1])
-        numD = random.randint(bottom_diacritics_count[0],bottom_diacritics_count[1])
-        numM = random.randint(middle_diacritics_count[0],middle_diacritics_count[1])
+        numU = random.randint(minimum_top_diacritics,maximum_top_diacritics)
+        numD = random.randint(minimum_bottom_diacritics,maximum_bottom_diacritics)
+        numM = random.randint(minimum_middle_diacritics,maximum_middle_diacritics)
         #Try to add accents to the letter, will add an upper, lower, or middle accent randomly until
         #either num_accents == maximum_diacritics_per_letter or we have added the maximum upper, middle and lower accents. Denoted
         #by numU, numD, and numM
