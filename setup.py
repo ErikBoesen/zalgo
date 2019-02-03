@@ -9,6 +9,5 @@ setup(
     author_email = 'me@erikboesen.com',
     url = 'https://github.com/ErikBoesen/zalgo',
     keywords = ['diacritic', 'filter', 'zalgo', 'he is coming', 'ahhh'],
-    install_requires=['unidecode'],
     classifiers = [],
 )
