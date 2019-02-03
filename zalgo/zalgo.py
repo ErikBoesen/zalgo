@@ -1,14 +1,10 @@
 import random
 
-self.numAccentsUp = (1, 3)
-self.numAccentsDown = (1, 3)
-self.numAccentsMiddle = (1, 2)
-self.maxAccentsPerLetter = 3
-self.diacritics_downward = ['̖',' ̗',' ̘',' ̙',' ̜',' ̝',' ̞',' ̟',' ̠',' ̤',' ̥',' ̦',' ̩',' ̪',' ̫',' ̬',' ̭',' ̮',' ̯',' ̰',' ̱',' ̲',' ̳',' ̹',' ̺',' ̻',' ̼',' ͅ',' ͇',' ͈',' ͉',' ͍',' ͎',' ͓',' ͔',' ͕',' ͖',' ͙',' ͚',' ',]
-self.diacritics_upward = [' ̍',' ̎',' ̄',' ̅',' ̿',' ̑',' ̆',' ̐',' ͒',' ͗',' ͑',' ̇',' ̈',' ̊',' ͂',' ̓',' ̈́',' ͊',' ͋',' ͌',' ̃',' ̂',' ̌',' ͐',' ́',' ̋',' ̏',' ̽',' ̉',' ͣ',' ͤ',' ͥ',' ͦ',' ͧ',' ͨ',' ͩ',' ͪ',' ͫ',' ͬ',' ͭ',' ͮ',' ͯ',' ̾',' ͛',' ͆',' ̚',]
-self.diacritics_middle = [' ̕',' ̛',' ̀',' ́',' ͘',' ̡',' ̢',' ̧',' ̨',' ̴',' ̵',' ̶',' ͜',' ͝',' ͞',' ͟',' ͠',' ͢',' ̸',' ̷',' ͡',]
+DIACRITICS_DOWNWARD = ['̖',' ̗',' ̘',' ̙',' ̜',' ̝',' ̞',' ̟',' ̠',' ̤',' ̥',' ̦',' ̩',' ̪',' ̫',' ̬',' ̭',' ̮',' ̯',' ̰',' ̱',' ̲',' ̳',' ̹',' ̺',' ̻',' ̼',' ͅ',' ͇',' ͈',' ͉',' ͍',' ͎',' ͓',' ͔',' ͕',' ͖',' ͙',' ͚',' ',]
+DIACRITICS_UPWARD = [' ̍',' ̎',' ̄',' ̅',' ̿',' ̑',' ̆',' ̐',' ͒',' ͗',' ͑',' ̇',' ̈',' ̊',' ͂',' ̓',' ̈́',' ͊',' ͋',' ͌',' ̃',' ̂',' ̌',' ͐',' ́',' ̋',' ̏',' ̽',' ̉',' ͣ',' ͤ',' ͥ',' ͦ',' ͧ',' ͨ',' ͩ',' ͪ',' ͫ',' ͬ',' ͭ',' ͮ',' ͯ',' ̾',' ͛',' ͆',' ̚',]
+DIACRITICS_MIDDLE = [' ̕',' ̛',' ̀',' ́',' ͘',' ̡',' ̢',' ̧',' ̨',' ̴',' ̵',' ̶',' ͜',' ͝',' ͞',' ͟',' ͠',' ͢',' ̸',' ̷',' ͡',]
 
-def process(self, text: str):
+def process(self, text: str, downward_diacritics_count=(1, 3), middle_diacritics_count=(1, 2), upward_diacritics_count=(1, 3), maximum_diacritics_per_letter=3):
     """
     Add zalgo characters to a string.
     """
@@ -28,27 +24,27 @@ def process(self, text: str):
             continue
 
         numAccents = 0
-        numU = random.randint(self.numAccentsUp[0],self.numAccentsUp[1])
-        numD = random.randint(self.numAccentsDown[0],self.numAccentsDown[1])
-        numM = random.randint(self.numAccentsMiddle[0],self.numAccentsMiddle[1])
+        numU = random.randint(upward_diacritics_count[0],upward_diacritics_count[1])
+        numD = random.randint(downward_diacritics_count[0],downward_diacritics_count[1])
+        numM = random.randint(middle_diacritics_count[0],middle_diacritics_count[1])
         #Try to add accents to the letter, will add an upper, lower, or middle accent randomly until
-        #either numAccents == self.maxAccentsPerLetter or we have added the maximum upper, middle and lower accents. Denoted
+        #either numAccents == maximum_diacritics_per_letter or we have added the maximum upper, middle and lower accents. Denoted
         #by numU, numD, and numM
-        while numAccents < self.maxAccentsPerLetter and numU + numM + numD != 0:
+        while numAccents < maximum_diacritics_per_letter and numU + numM + numD != 0:
             randint = random.randint(0,2) # randomly choose what accent type to add
             if randint == 0:
                 if numU > 0:
-                    a = self.combineWithDiacritic(a, self.diacritics_upward)
+                    a = self.combine_with_diacritic(a, DIACRITICS_UPWARD)
                     numAccents += 1
                     numU -= 1
             elif randint == 1:
                 if numD > 0:
-                    a = self.combineWithDiacritic(a, self.diacritics_downward)
+                    a = self.combine_with_diacritic(a, DIACRITICS_DOWNWARD)
                     numD -= 1
                     numAccents += 1
             else:
                 if numM > 0:
-                    a = self.combineWithDiacritic(a, self.diacritics_middle)
+                    a = self.combine_with_diacritic(a, DIACRITICS_MIDDLE)
                     numM -= 1
                     numAccents += 1
 
@@ -59,17 +55,8 @@ def process(self, text: str):
     newWord = ''.join(newLetters)
     return newWord
 
-def combineWithDiacritic(self, letter, diacriticList):
+def combine_with_diacritic(self, letter, diacriticList):
     '''
     Combines letter and a random character from diacriticList
     '''
     return letter.strip() + diacriticList[random.randrange(0, len(diacriticList))].strip()
-
-if __name__ == "__main__":
-    z = zalgo()
-    z.numAccentsUp = (10,33)
-    z.numAccentsDown = (10,33)
-    z.numAccentsMiddle = (10,33)
-    z.maxAccentsPerLetter = 40
-
-    print(z.zalgofy("Test text"))
