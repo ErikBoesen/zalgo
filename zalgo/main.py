@@ -33,17 +33,17 @@ def process(text: str, bottom_diacritics_count=(1, 3), middle_diacritics_count=(
             randint = random.randint(0,2) # randomly choose what accent type to add
             if randint == 0:
                 if numU > 0:
-                    a = self.combine_with_diacritic(a, DIACRITICS_TOP)
+                    a = combine_with_diacritic(a, DIACRITICS_TOP)
                     num_accents += 1
                     numU -= 1
             elif randint == 1:
                 if numD > 0:
-                    a = self.combine_with_diacritic(a, DIACRITICS_BOTTOM)
+                    a = combine_with_diacritic(a, DIACRITICS_BOTTOM)
                     numD -= 1
                     num_accents += 1
             else:
                 if numM > 0:
-                    a = self.combine_with_diacritic(a, DIACRITICS_MIDDLE)
+                    a = combine_with_diacritic(a, DIACRITICS_MIDDLE)
                     numM -= 1
                     num_accents += 1
 
