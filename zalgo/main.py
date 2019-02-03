@@ -31,23 +31,22 @@ def process(text: str, bottom_diacritics_count=(1, 3), middle_diacritics_count=(
             randint = random.randint(0,2) # randomly choose what accent type to add
             if randint == 0:
                 if numU > 0:
-                    a = combine_with_diacritic(a, DIACRITICS_TOP)
+                    letter = combine_with_diacritic(letter, DIACRITICS_TOP)
                     num_accents += 1
                     numU -= 1
             elif randint == 1:
                 if numD > 0:
-                    a = combine_with_diacritic(a, DIACRITICS_BOTTOM)
+                    letter = combine_with_diacritic(letter, DIACRITICS_BOTTOM)
                     numD -= 1
                     num_accents += 1
             else:
                 if numM > 0:
-                    a = combine_with_diacritic(a, DIACRITICS_MIDDLE)
+                    letter = combine_with_diacritic(letter, DIACRITICS_MIDDLE)
                     numM -= 1
                     num_accents += 1
 
         #a = a.replace(" ","") #remove any spaces, this also gives it the zalgo text look
-        #print('accented a letter: ' + a)
-        new_letters.append(a)
+        new_letters.append(letter)
 
     new_word = ''.join(new_letters)
     return new_word
