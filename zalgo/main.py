@@ -13,13 +13,11 @@ def process(text: str, bottom_diacritics_count=(1, 3), middle_diacritics_count=(
     new_word = ''
     new_letters = []
 
-    # Add diacritics of each type for each letter
+    # Add diacritics for each letter
     for letter in letters:
-        a = letter #create a dummy letter
-
-        #skip this letter we can't add a diacritic to it
-        if not a.isalpha():
-            new_letters.append(a)
+        # If character is not alphabetical, skip it
+        if not letter.isalpha():
+            new_letters.append(letter)
             continue
 
         num_accents = 0
