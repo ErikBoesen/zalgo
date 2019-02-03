@@ -10,14 +10,13 @@ def process(text: str, bottom_diacritics_count=(1, 3), middle_diacritics_count=(
     """
     # Split string into its constituent characters
     letters = list(text)
-    new_word = ''
-    new_letters = []
+    output = ''
 
     # Add diacritics for each letter
     for letter in letters:
         # If character is not alphabetical, skip it
         if not letter.isalpha():
-            new_letters.append(letter)
+            output += letter
             continue
 
         num_accents = 0
@@ -46,10 +45,9 @@ def process(text: str, bottom_diacritics_count=(1, 3), middle_diacritics_count=(
                     num_accents += 1
 
         #a = a.replace(" ","") #remove any spaces, this also gives it the zalgo text look
-        new_letters.append(letter)
+        output += letter
 
-    new_word = ''.join(new_letters)
-    return new_word
+    return output
 
 def combine_with_diacritic(letter, diacritic_options):
     """
