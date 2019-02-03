@@ -9,11 +9,10 @@ def process(text: str, bottom_diacritics_count=(1, 3), middle_diacritics_count=(
     Add zalgo characters to a string.
     """
     # Split string into its constituent characters
-    letters = list(text)
     output = ''
 
     # Add diacritics for each letter
-    for letter in letters:
+    for letter in text:
         # If character is not alphabetical, skip it
         if not letter.isalpha():
             output += letter
