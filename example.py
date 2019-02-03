@@ -1,3 +1,6 @@
 import zalgo
 
-print(zalgo.process('Test text'))
+encoded = zalgo.process('Test text')
+print(encoded)
+decoded = zalgo.strip(encoded)
+print(decoded)

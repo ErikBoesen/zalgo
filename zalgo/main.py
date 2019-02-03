@@ -35,6 +35,14 @@ def process(text: str, min_top_diacritics=1, max_top_diacritics=3, min_middle_di
 
     return output
 
+def strip(text: str):
+    """
+    Remove diacritics from text.
+    """
+    for diacritic in DIACRITICS_TOP + DIACRITICS_MIDDLE + DIACRITICS_BOTTOM:
+        text = text.replace(diacritic.strip(), '')
+    return text
+
 def mark(character, diacritic_options):
     """
     Combine character with a random diacritic.
