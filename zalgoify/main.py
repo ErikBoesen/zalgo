@@ -11,10 +11,13 @@ def process(text: str, min_top_diacritics=1, max_top_diacritics=3, min_middle_di
     """
     output = ''
 
+    if remove_spaces:
+        output.replace(' ', '')
+
     # Add diacritics for each character
     for character in text:
-        # If character is not alphabetical, skip it
-        if not character.isalpha():
+        # Skip spaces
+        if character == ' ':
             output += character
             continue
 
@@ -29,9 +32,6 @@ def process(text: str, min_top_diacritics=1, max_top_diacritics=3, min_middle_di
             character = mark(character, DIACRITICS_BOTTOM)
 
         output += character
-
-    if remove_spaces:
-        output.replace(' ', '')
 
     return output
 
