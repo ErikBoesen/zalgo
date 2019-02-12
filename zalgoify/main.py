@@ -8,6 +8,13 @@ DIACRITICS_BOTTOM = ['̖',' ̗',' ̘',' ̙',' ̜',' ̝',' ̞',' ̟',' ̠',' ̤',
 def process(text: str, min_top_diacritics=1, max_top_diacritics=3, min_middle_diacritics=1, max_middle_diacritics=2, min_bottom_diacritics=1, max_bottom_diacritics=3, remove_spaces=False):
     """
     Add zalgo characters to a string.
+    :param min_top_diacritics: minimum upper diacritic count.
+    :param max_top_diacritics: maximum upper diacritic count.
+    :param min_middle_diacritics: minimum middle diacritic count.
+    :param max_middle_diacritics: maximum middle diacritic count.
+    :param min_bottom_diacritics: minimum lower diacritic count.
+    :param max_bottom_diacritics: maximum lower diacritic count.
+    :param remove_spaces: should spaces be removed from string?
     """
     output = ''
 
@@ -38,6 +45,7 @@ def process(text: str, min_top_diacritics=1, max_top_diacritics=3, min_middle_di
 def strip(text: str):
     """
     Remove diacritics from text.
+    :param str: string from which to strip diacritics.
     """
     for diacritic in DIACRITICS_TOP + DIACRITICS_MIDDLE + DIACRITICS_BOTTOM:
         text = text.replace(diacritic.strip(), '')
